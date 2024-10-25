@@ -22,7 +22,8 @@ public class BoardTest {
         Square[][] grid = new Square[1][1];
         grid[0][0] = null;
 
-        Board board = new Board(grid);
-        assertThat(board.squareAt(0,0)).isEqualTo(grid[0][0]);
+        assertThrows(AssertionError.class, () -> {
+            new Board(grid);
+        });
     }
 }
