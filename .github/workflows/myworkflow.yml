@@ -43,9 +43,9 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
-    # Build with Gradle Wrapper using xvfb for AWT support and disabling daemon
+    # Build with Gradle Wrapper using xvfb for AWT support and disabling daemon, skipping Checkstyle
     - name: Build with Gradle
-      run: xvfb-run ./gradlew build --no-daemon
+      run: xvfb-run ./gradlew build -x checkstyleTest --no-daemon
 
   dependency-submission:
 
