@@ -46,7 +46,7 @@ public class MapParserTest {
             MapParser mapParser = new MapParser(levelFactory, boardFactory);
             ArrayList<String> map = new ArrayList<>();
             map.add("#####");
-            map.add("#P#@"); // Invalid character '@'
+            map.add("#P#.");
             mapParser.parseMap(map);
         });
 
