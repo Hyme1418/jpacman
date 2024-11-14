@@ -7,6 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.junit.jupiter.api.Assertions;
 
 import java.util.ArrayList;
 
@@ -35,5 +36,20 @@ public class MapParserTest {
         map.add("############");
         mapParser.parseMap(map);
         Mockito.verify(levelFactory, Mockito.times(1)).createGhost();
+    }
+    /**
+     * Test for the parseMap method (bad map).
+     */
+    @Test
+    public void testParseMapWrong1() {
+        Exception thrown = Assertions.assertThrows(RuntimeException.class, () -> {
+            MapParser mapParser = new MapParser(levelFactory, boardFactory);
+            ArrayList<String> map = new ArrayList<>();
+            map.add("#####");
+            map.add("#P#@"); // Invalid character '@'
+            mapParser.parseMap(map);
+        });
+
+        Assertions.assertEquals("Input text lines are not of equal width.", thrown.getMessage());
     }
 }
